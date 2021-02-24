@@ -1,5 +1,0 @@
-.NET Reactor log file
----------------------
-
----- gep.exe ----
-
