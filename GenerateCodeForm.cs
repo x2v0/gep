@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Text;
 using System.Windows.Forms;
 
@@ -24,6 +25,15 @@ namespace gep
                 textBox.Font = new Font(ff, 10, FontStyle.Regular);
                 textBox.Text = Code;
             }
+        }
+
+        private void OnFormClosed(object sender, FormClosedEventArgs e) 
+        {
+
+           var result = saveFileDialog.ShowDialog();
+           var file = saveFileDialog.FileName;
+
+           File.WriteAllText(file, textBox.Text);
         }
     }
 }

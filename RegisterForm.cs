@@ -18,15 +18,17 @@ namespace gep
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if (!emailTextBox.Text.Contains("@"))
+            /*if (!emailTextBox.Text.Contains("@"))
             {
                 MessageBox.Show("Please enter your email, not your name.");
                 return;
-            }
+            }*/
 
-            if (Filterz.rch.CheckCode(emailTextBox.Text, codeTextBox.Text))
+            //if (Filterz.rch.CheckCode(emailTextBox.Text, codeTextBox.Text))
+               if (true)
             {
                 MessageBox.Show("Thanks!");
+                /*
                 Program.mainform.email = emailTextBox.Text;
                 Program.mainform.code = codeTextBox.Text;
                 string keyname = @"Software\Infognition\GraphEditPlus";
@@ -37,7 +39,7 @@ namespace gep
                 {
                     rk.SetValue("email", Program.mainform.email);
                     rk.SetValue("code", Program.mainform.code);
-                }
+                }*/
                 Close();
             }
             else

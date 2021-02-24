@@ -1,15 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 using Microsoft.Win32;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Runtime.Serialization;
-using System.Diagnostics;
 
 namespace gep
 {
@@ -25,8 +18,8 @@ namespace gep
 
         private void OnNewGraph(object sender, EventArgs e)
         {
-            if (RegistryChecker.R[0] == 0)
-                Filterz.rch.StartChecking(email, code); //in sepatate thread
+            //if (RegistryChecker.R[0] == 0)
+            //    Filterz.rch.StartChecking(email, code); //in sepatate thread
             GraphForm gf = new GraphForm();
             gf.MdiParent = this;
             gf.Show();
@@ -50,7 +43,7 @@ namespace gep
 
         public Filterz filterz;
         public PropertiesForm propform;
-        public string email, code;
+        //public string email, code;
         public string keyname = @"Software\Infognition\GraphEditPlus";
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -78,7 +71,7 @@ namespace gep
             RegistryKey nrk = Registry.CurrentUser.OpenSubKey(keyname);
             if (nrk==null)
                 nrk = Registry.CurrentUser.CreateSubKey(keyname);
-
+/*
             email = (string)nrk.GetValue("email", "");
             code = (string)nrk.GetValue("code", "");
 
@@ -91,7 +84,7 @@ namespace gep
                     code = (string)ork.GetValue("code", "");
                 }
             }
-
+            */
             int sugg_url = (int)nrk.GetValue("suggestURL", 0);
             suggestURLs = sugg_url > 0;
 
@@ -104,11 +97,11 @@ namespace gep
             int maxed = (int)nrk.GetValue("winMaxed", 1);
             if (maxed == 0)
             {
-                WindowState = FormWindowState.Normal;                
-                int left = (int)nrk.GetValue("winLeft", 0);
-                int right = (int)nrk.GetValue("winRight", 1200);
-                int top = (int)nrk.GetValue("winTop", 0);
-                int bottom = (int)nrk.GetValue("winBottom", 720);
+                WindowState = FormWindowState.Normal;
+                int left = 0;// (int)nrk.GetValue("winLeft", 0);
+                int right = 1200;//(int)nrk.GetValue("winRight", 1200);
+                int top = 0;//(int)nrk.GetValue("winTop", 0);
+                int bottom = 720; //(int)nrk.GetValue("winBottom", 720);
                 DesktopBounds = new Rectangle(left, top, right - left, bottom - top);
             }
 
@@ -140,8 +133,9 @@ namespace gep
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (RegistryChecker.R[0] == 0)
-                Filterz.rch.CheckCode(email, code);
+            //if (RegistryChecker.R[0] == 0)
+            //    Filterz.rch.CheckCode(email, code);
+            Program.mainform.BeginInvoke(new MethodInvoker(Program.mainform.HideRegisterButton));
             GraphForm gf = new GraphForm();
             gf.MdiParent = this;
             string s = gf.Text;

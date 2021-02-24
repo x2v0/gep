@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 using Microsoft.Win32;
 using System.Diagnostics;
@@ -17,6 +16,8 @@ namespace gep
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             dolog = args.Length > 0 && args[0] == "log";
+
+            Resolver.ResolveAssembly();
             Application.Run(new MainForm(args));
         }
 

@@ -11,7 +11,7 @@
     <RootNamespace>gep</RootNamespace>
     <AssemblyName>gep</AssemblyName>
     <ApplicationIcon>gep_shot64a.ico</ApplicationIcon>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>2.0</OldToolsVersion>
@@ -31,6 +31,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -41,6 +42,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -108,10 +110,12 @@
     <Reference Include="DirectShowLib-2005, Version=2.0.0.0, Culture=neutral, PublicKeyToken=67e7b740cdfc2d3f, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>.\DirectShowLib-2005.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="NineRays.ObfuscationAttributes, Version=1.0.0.0, Culture=neutral, PublicKeyToken=59d4bed864488801">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>.\NineRays.ObfuscationAttributes.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -129,6 +133,7 @@
     </Compile>
     <Compile Include="amvideo.cs" />
     <Compile Include="Animated.cs" />
+    <Compile Include="AssemblyResolver.cs" />
     <Compile Include="EditFilterForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -309,7 +314,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="Migrated rules for gep.ruleset" />
+    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -360,6 +365,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="NineRays.ObfuscationAttributes.dll" />
+    <EmbeddedResource Include="DirectShowLib-2005.dll" />
     <Content Include="gep_shot32a.ico" />
     <Content Include="gep_shot64a.ico" />
   </ItemGroup>

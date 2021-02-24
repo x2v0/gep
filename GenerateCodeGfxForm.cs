@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Text;
 using System.Windows.Forms;
 
@@ -10,6 +11,8 @@ namespace gep
 {
     partial class GenerateCodeGfxForm : Form
     {
+       private string Code;
+
         public GenerateCodeGfxForm(string code)
         {
             InitializeComponent();
@@ -27,7 +30,13 @@ namespace gep
                 vScrollBar.SmallChange = sz.Height / 10;
                 vScrollBar.LargeChange = panel.Size.Height;//sz.Height / 4;
                 panel.bmp = bmp;
-            }            
+            }
+
+            Code = code;
+            var result = saveFileDialog.ShowDialog();
+            var file = saveFileDialog.FileName;
+
+            File.WriteAllText(file, Code);
         }
 
         private void vScrollBar_ValueChanged(object sender, EventArgs e)
@@ -41,6 +50,15 @@ namespace gep
             using(var f = new RegisterForm())
                 f.ShowDialog();
         }
+
+        private void OnFileOk(object sender, CancelEventArgs e) {
+          /* var result = saveFileDialog.ShowDialog();
+           var file = saveFileDialog.FileName;
+
+           File.WriteAllText(file, Code);
+           */
+        }
+
     }
 
     class CodePanel : Panel
